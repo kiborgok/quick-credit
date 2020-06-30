@@ -32,7 +32,7 @@ dotenv.config();
             res.sendFile(
               path.join(
                 __dirname,
-                "quick-loan-frontend",
+                "frontend",
                 "build",
                 "index.html"
               )
