@@ -24,7 +24,7 @@ dotenv.config();
 
         const app = express();
         // Serve static assets if in production
-        if (process.env.NODE_ENV === "production") {
+        //if (process.env.NODE_ENV === "production") {
           // Set static folder
           app.use(express.static("frontend/build"));
 
@@ -38,7 +38,7 @@ dotenv.config();
               )
             );
           });
-        }
+        
         const port = process.env.PORT || 5000;
 
         app.disable("x-powered-by");
