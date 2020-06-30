@@ -34,7 +34,7 @@ dotenv.config();
                     path.join(
                         __dirname,
                         "/",
-                        "../build",
+                        "../frontend/build",
                         "index.html"
                     )
                 );
