@@ -1,0 +1,85 @@
+import React, { useEffect, useState } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as loanActions from "../redux/actions/loanActions";
+
+const mapStateToProps = ({ errors, loans }) => ({ errors, loans });
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(loanActions, dispatch),
+});
+
+const LoanDetails = ({ actions, loans, errors }) => {
+  const [showError, setShowError] = useState(false);
+    useEffect(() => {
+      const id = actions.loadLoan();
+      return () => id
+    },[actions]);
+  useEffect(() => setShowError(false),[])
+  return (
+    <>
+      <div className="data-form" style={{ width: "57%" }}>
+        <header>
+          <h1>Loan Details</h1>
+        </header>
+        <div className='error'>{showError && errors}</div>
+          {loans.length === 0 ? 'You have no loans' :
+            (
+              <>
+                {loans.map(loan => (
+                  <div
+                    key={loan._id}
+                    style={{
+                      display: "flex",
+                      alignSelf: "center",
+                      width: "40%",
+                      flexDirection: "column",
+                      marginTop: "20px",
+                      borderRadius: "8px",
+                      padding: "15px",
+                      boxShadow: "0px 2px 10px 0px #185a9d",
+                    }}
+                  >
+                    <p style={{ padding: "5px" }}>
+                      <em style={{ fontWeight: "bold" }}>Amount: </em>{" "}
+                      {"ksh. " + loan.amount}
+                    </p>
+                    <p style={{ padding: "5px" }}>
+                      <em style={{ fontWeight: "bold" }}>Interest:</em>{" "}
+                      {"ksh. " + loan.interest}
+                    </p>
+                    <p style={{ padding: "5px" }}>
+                      <em style={{ fontWeight: "bold" }}>Balance:</em>{" "}
+                      {"ksh. " + loan.balance}
+                    </p>
+                    <p style={{ padding: "5px" }}>
+                      <em style={{ fontWeight: "bold" }}>Period(Months):</em> {loan.tenor}
+                    </p>
+                    <p style={{ padding: "5px" }}>
+                      <em style={{ fontWeight: "bold" }}>Paid:</em>{" "}
+                      {loan.repaid === false ? "Not paid" : "Paid"}
+                    </p>
+                    <p style={{ padding: "5px" }}>
+                      <em style={{ fontWeight: "bold" }}>Created At:</em> {loan.createdAt}
+                    </p>
+                    <button style={{marginLeft:'30px'}} className={
+                          loan.status === "Pending"
+                            ? "pending"
+                            : loan.status === "Approved"
+                            ? "approved"
+                            : "unverified"
+                        }>{loan.status}</button>
+                  </div>
+                ))}
+            </>
+            )
+          }
+        </div>
+    </>
+  );
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(LoanDetails)
+);
