@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A quick credit web app",
   "main": "./src/index.js",
-  "module": "./src/main.js",
+  "module": "main.js",
   "engines": {
     "node": "14.4.0"
   },
