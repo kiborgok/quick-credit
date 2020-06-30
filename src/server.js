@@ -33,8 +33,8 @@ dotenv.config();
                 res.sendFile(
                     path.join(
                         __dirname,
-                        "frontend",
-                        "build",
+                        "/",
+                        "../build",
                         "index.html"
                     )
                 );
