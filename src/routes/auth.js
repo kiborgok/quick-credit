@@ -108,7 +108,7 @@ authRoutes.post('/signup', async (req, res) => {
           html: ` <div>
                         <h3>Hi ${firstName},</h3>
                         <p>Thank you for registering with us.</p>
-                        <p>Click <a href='http://localhost:3000/verify'>here</a> to verify your account.</p>
+                        <p>Click <a href='https://quick-credit-webapp.herokuapp.com/verify'>here</a> to verify your account.</p>
                         <p><b>Please NOTE: This link expires in 24hrs</b></p></br></br>
                         <p>Regards,</p>
                         <p><em>Admin</em></p>
