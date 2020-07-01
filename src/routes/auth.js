@@ -96,15 +96,15 @@ authRoutes.post('/signup', async (req, res) => {
           port: process.env.EMAIL_PORT || 465,
           secure: true,
           auth: {
-            user: process.env.EMAIL_SENDER,
-            pass: process.env.EMAIL_SENDER_PASS,
+            user: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
+            pass: process.env.EMAIL_SENDER_PASS || "Matesya1@#$",
           },
         });
 
         const message = {
-          from: process.env.EMAIL_SENDER, // Sender address
-          to: email, // List of recipients
-          subject: "Quick Credit", // Subject line
+            from: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
+          to: email,
+          subject: "Quick Credit",
           html: ` <div>
                         <h3>Hi ${firstName},</h3>
                         <p>Thank you for registering with us.</p>
@@ -117,9 +117,11 @@ authRoutes.post('/signup', async (req, res) => {
 
         transport.sendMail(message, function (err, info) {
             if (err) {
-                res.json({ 'error': 'There was a problem' });
+                console.log(err)
+                //res.json({ 'error': 'There was a problem' });
             } else {
-                res.json({ 'data': 'Mail sent' + info });
+                console.log(info)
+                //res.json({ 'data': 'Mail sent' + info });
             }
         });
 
