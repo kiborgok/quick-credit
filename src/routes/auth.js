@@ -95,6 +95,7 @@ authRoutes.post('/signup', async (req, res) => {
           host: process.env.EMAIL_HOST || "smtp.gmail.com",
           port: process.env.EMAIL_PORT || 465,
           secure: true,
+          authMethod: 2,
           auth: {
             user: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
             pass: process.env.EMAIL_SENDER_PASS || "Matesya1@#$",
