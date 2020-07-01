@@ -122,15 +122,17 @@ function App({ history }) {
                     </div>
                   )
                 ) : (
+                    <>
                   <div className="nav-links login">
                     <NavLink to={"/login"}>SignIn</NavLink>
-                  </div>
-                  )}
-                <div className="nav-links login">
-                  <NavLink to={"/terms"}>
-                    Terms of Service
+                    </div>
+                    <div className="nav-links login">
+                      <NavLink to={"/terms"}>
+                        Terms of Service
                     </NavLink>
-                </div>
+                      </div>
+                      </>
+                  )}
               </div>
             </div>
           </div>
