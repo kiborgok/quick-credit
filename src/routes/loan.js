@@ -3,7 +3,7 @@ import Joi from 'joi';
 import User from '../models/user';
 import Loan from '../models/loan';
 import Repayment from '../models/repayment';
-import { createLoan, repayLoan } from '../validations/user';
+import { createLoan, repayLoan } from '../validations/validate';
 import { parseError, authenticateJWT } from '../utilities/helpers';
 
 const loanRoutes = express.Router();

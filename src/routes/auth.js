@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import Joi from 'joi';
 import nodemailer from 'nodemailer';
 import User from '../models/user';
-import { signUp, signIn } from '../validations/user';
+import { signUp, signIn } from '../validations/validate';
 import { parseError, generateAccessToken, authenticateJWT } from '../utilities/helpers';
 dotenv.config();
 
