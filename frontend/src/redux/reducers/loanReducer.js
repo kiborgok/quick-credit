@@ -4,9 +4,9 @@ import initialState from './initialState';
 const loanReducer = (state = initialState.loans, action) => {
     switch (action.type) {
       case types.CREATE_LOAN:
-        return state;
+        return action.loan;
       case types.REPAY_LOAN:
-        return state;
+        return action.loan;
       case types.LOAD_LOAN_SUCCESS:
         return action.loan;
       case types.LOAD_LOANS_SUCCESS:

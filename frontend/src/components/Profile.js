@@ -25,7 +25,7 @@ const Profile = ({ actions, users, errors }) => {
           <h1>Account Details</h1>
         </header>
         <p className='error'>{showError && errors}</p>
-        {users.length === 0 ? 'Loading' : (
+        {users.length === 0 ? 'No data' : (
         <>
           {
             users.map(user => (
@@ -34,7 +34,6 @@ const Profile = ({ actions, users, errors }) => {
                 style={{
                   display: "flex",
                   alignSelf: "center",
-                  width: "40%",
                   flexDirection: "column",
                   marginTop: "20px",
                   borderRadius: "8px",

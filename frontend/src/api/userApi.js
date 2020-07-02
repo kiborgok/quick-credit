@@ -12,7 +12,7 @@ export const loadUsers = () => (
 );
 
 export const loadUser = () => (
-    fetch(`api/v1/auth/users/${id}`, {
+    fetch(`api/v1/auth/users/user/${id}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`

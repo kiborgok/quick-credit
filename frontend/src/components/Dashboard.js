@@ -7,7 +7,7 @@ const Dashboard = () => {
     return (
         <div style={{display:'flex', flexDirection:'column'}}>
             <h1 style={{marginBottom: '2px'}}>{id ? user === 'Admin' ? `Welcome ${user}` : `Welcome ${username}` : `Welcome to Quick credit`}</h1>
-            <video height='480' autoPlay={true} controls>
+            <video height='430' width='720' autoPlay={true} controls>
                 <source src='/video/quick-loan-basics.mp4' type='video/mp4' />
                 Your browser does not support the video tag.
             </video>

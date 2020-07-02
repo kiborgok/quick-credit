@@ -5,6 +5,10 @@ export const receiveErrors = error => (
     { type: types.RECEIVE_ERRORS, error: error.error }
 );
 
+export const clearErrors = () => (
+    { type: types.CLEAR_ERRORS, error: ''}
+);
+
 export const signUpUserSuccess = user => (
     { type: types.SIGN_UP_USER_SUCCESS, user: user.data }
 );
@@ -32,6 +36,9 @@ export function loadUsers() {
                 if (users.data) return dispatch(loadUsersSuccess(users))
                 return dispatch(receiveErrors(users))
             })
+            .catch(error => {
+                alert(`Network Error ${error}`)
+            })
     };
 };
 
@@ -39,8 +46,13 @@ export function loadUser() {
     return function (dispatch) {
         return userApi.loadUser()
             .then(user => {
-                if (user.data) return dispatch(loadUserSuccess(user))
+                if (user.data) {
+                    return dispatch(loadUserSuccess(user))
+                }
                 return dispatch(receiveErrors(user))
+            })
+            .catch(error => {
+                alert(`Network Error ${error}`)
             })
     };
 };
@@ -51,10 +63,15 @@ export function verifyUser() {
             .then(user => {
                 if (user.data) {
                     alert('You have successfully verified your account')
+                    localStorage.removeItem('verificationToken')
+                    localStorage.removeItem('email')
                     return dispatch(verifyUserSuccess(user))
                 }
-                alert('There was a problem: ' + user.error)
+                alert('There was a problem ' + user.error)
                 return dispatch(receiveErrors(user))
+            })
+            .catch(error => {
+                alert(`Network Error ${error}`)
             })
     };
 };
@@ -70,6 +87,9 @@ export function signup(user) {
                     return dispatch(signInUserSuccess(user))
                 }
                 return dispatch(receiveErrors(user))
+            })
+            .catch(error => {
+                alert(`Network Error ${error}`)
             })
     };
 };
@@ -97,6 +117,9 @@ export const signin = user => dispatch => userApi.signin(user)
             }
         }
         return dispatch(receiveErrors(user))
+    })
+    .catch(error => {
+        alert(`Network Error ${error}`)
     })
 
 

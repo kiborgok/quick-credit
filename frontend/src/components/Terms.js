@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 const Terms = () => (
         <>
-            <div className="loan-form">
+        <div className="loan-form" style={{ width: '50%' }}>
                 <header>
                     <h1>Terms & conditions</h1>
                 </header>
@@ -12,6 +12,7 @@ const Terms = () => (
                 <h2>Introduction</h2>
                 <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of our website, Quick Credit accessible at </p>
                 <p>Minors or people below 18 years old are not allowed to use this Website.</p>
+                <p>Our interest rates stand at 5% of the principal</p>
                 <h2>Intellectual Property Rights</h2>
                 <p>You are granted limited license only for purposes of viewing the material contained on this Website.</p>
                 <h2>Restrictions</h2>

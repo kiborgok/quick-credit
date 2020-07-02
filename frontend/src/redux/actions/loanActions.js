@@ -40,6 +40,9 @@ export function applyLoan(loan) {
                 }
                 return dispatch(receiveErrors(loan))
             })
+            .catch(error => {
+                alert(`Network Error ${error}`)
+            })
     };
 };
 
@@ -53,34 +56,63 @@ export function repayLoan(loan) {
                 }
                 return dispatch(receiveErrors(loan))
             })
+            .catch(error => {
+                alert(`Network Error ${error}`)
+            })
     };
 };
 
 export function loadLoans() {
     return function (dispatch) {
         return loanApi.loadLoans()
-            .then(loans => dispatch(loadLoansSuccess(loans)))
+            .then(loans => {
+                if (loans.data) return dispatch(loadLoansSuccess(loans))
+                return dispatch(receiveErrors(loans))
+            })
+            .catch(error => {
+                alert(`Network Error ${error}`)
+            })
     };
 };
 
 export function loadLoan() {
     return function (dispatch) {
         return loanApi.loadLoan()
-            .then(loan => dispatch(loadLoanSuccess(loan)))
+            .then(loan => {
+                if (loan.data) {
+                    return dispatch(loadLoanSuccess(loan))
+                }
+                return dispatch(receiveErrors(loan))
+            })
+            .catch(error => {
+                alert(`Network Error ${error}`)
+            })
     };
 };
 
 export function loadHistory(loanId) {
     return function (dispatch) {
         return loanApi.loadRepaymentHistory(loanId)
-            .then(loanHistory => dispatch(loadLoanHistorySuccess(loanHistory)))
+            .then(loanHistory => {
+                if (loanHistory.data) return dispatch(loadLoanHistorySuccess(loanHistory))
+                return dispatch(receiveErrors(loanHistory))
+            })
+            .catch(error => {
+                alert(`Network Error ${error}`)
+            })
     };
 };
 
 export function approveOrRejectLoan(loan) {
     return function (dispatch) {
         return loanApi.approveOrRejectLoan(loan)
-            .then(loan => dispatch(approveOrReject(loan)))
+            .then(loan => {
+                if (loan.data) return dispatch(approveOrReject(loan))
+                return dispatch(receiveErrors(loan))
+            })
+            .catch(error => {
+                alert(`Network Error ${error}`)
+            })
     };
 };
 

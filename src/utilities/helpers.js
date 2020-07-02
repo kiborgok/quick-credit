@@ -22,7 +22,7 @@ export const authenticateJWT = (req, res, next) => {
             if (err) {
               return res.json({
                 status: 403,
-                error: "Token expired resend email.",
+                error: "Token expired or has been modified",
               });
             }
             req.user = user;

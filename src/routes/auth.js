@@ -24,7 +24,7 @@ authRoutes.get('/users', authenticateJWT, async (req, res) => {
 });
 
 //Get one user by id
-authRoutes.get('/users/:id', authenticateJWT, async (req, res) => {
+authRoutes.get('/users/user/:id', authenticateJWT, async (req, res) => {
     try {
         const { admin } = req.user;
         if (!admin) return res.json({ 'status': 403, 'error': 'Forbidden' });

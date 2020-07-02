@@ -33,9 +33,7 @@ const LoanDetails = ({ actions, loans, errors }) => {
                     style={{
                       display: "flex",
                       alignSelf: "center",
-                      width: "40%",
                       flexDirection: "column",
-                      marginTop: "20px",
                       borderRadius: "8px",
                       padding: "15px",
                       boxShadow: "0px 2px 10px 0px #185a9d",

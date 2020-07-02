@@ -44,7 +44,7 @@ body{
 }
 
 .nav-links > a.active {
-  color: #185a9d;
+  color: yellow;
 }
 
 .nav-links:hover {
@@ -52,6 +52,8 @@ body{
 }
 
 .nav-links > a {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   padding: 2px;
   color: black;
@@ -66,16 +68,14 @@ body{
   min-height: 494.5px;
   justify-content: center;
   align-items: center;
-  margin: 20px 10px;
+  margin: 10px 5px;
   
 }
 
 .data-form{
   display: flex;
   flex-direction: column;
-  min-width: 700px;
-  margin-top: 30px;
-  width: 85%;
+  width: 90%;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0px 2px 10px 0px #185a9d;
@@ -87,7 +87,7 @@ body{
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  width: 35%;
+  width: 60%;
   height: max-content;
   border-radius: 8px;
   padding: 20px;
@@ -169,7 +169,6 @@ select:hover {
 }
 
 table {
-  width: 100%;
   margin: 10px;
   border-radius: 6px;
 }
@@ -256,7 +255,7 @@ th {
   position: fixed;
   background-image: linear-gradient(to bottom right, #185a9d, #43cea2);
   padding: 25px;
-  width: 60%;
+  width: 50%;
   height: auto;
   top: 50%;
   left: 50%;

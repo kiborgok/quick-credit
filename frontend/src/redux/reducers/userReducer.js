@@ -8,7 +8,7 @@ const userReducer = (state = initialState.users, action) => {
         case types.LOAD_USER_SUCCESS:
             return action.user
         case types.SIGN_UP_USER_SUCCESS:
-            return state
+            return action.user
         case types.VERIFY_USER_SUCCESS:
             return state.map(user => {
                 if (user._id === action.user.id) {

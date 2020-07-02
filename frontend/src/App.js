@@ -16,7 +16,10 @@ import LoanApplications from './components/admin/LoanApplications';
 import Clients from './components/admin/Clients';
 import LoanDetails from './components/LoanDetails';
 import Terms from './components/Terms';
-import { IoIosLogOut } from "react-icons/io";
+import {
+  IoIosLogIn,
+  IoIosLogOut
+} from "react-icons/io";
 
 function App({ history }) {
   let loggedIn = localStorage.getItem('user');
@@ -54,8 +57,7 @@ function App({ history }) {
                     <NavLink to={"/loanPayment"}>Loan Payment</NavLink>
                   </div>
                 )}
-                {loggedIn === "User" ||
-                loggedIn === "Admin" ? null : (
+                {loggedIn === "User" || loggedIn === "Admin" ? null : (
                   <div className="nav-links login">
                     <NavLink to={"/signup"} className="signup login">
                       SignUp
@@ -83,56 +85,63 @@ function App({ history }) {
                       <span>Account &#9662;</span>
                       <ul className="features-menu">
                         {loggedIn === "User" && (
-                            <li>
-                              <NavLink to={"/profile"}>Profile</NavLink>
-                            </li>
-                          )}
+                          <li>
+                            <NavLink to={"/profile"}>Profile</NavLink>
+                          </li>
+                        )}
                         {loggedIn === "User" && (
-                            <li>
-                              <NavLink to={"/loanDetails"}>Loans</NavLink>
-                            </li>
-                          )}
-                        {loggedIn === "User" &&
-                          loanStatus === "Approved" && (
-                            <li>
-                              <NavLink to={"/loanRepaymentHistory"}>
-                                History
-                              </NavLink>
-                            </li>
-                          )}
-                        <li>
-                          <IoIosLogOut
-                            style={{ cursor: "pointer" }}
-                            size={24}
-                            onClick={logout}
-                          />
+                          <li>
+                            <NavLink to={"/loanDetails"}>Loans</NavLink>
+                          </li>
+                        )}
+                        {loggedIn === "User" && loanStatus === "Approved" && (
+                          <li>
+                            <NavLink to={"/loanRepaymentHistory"}>
+                              History
+                            </NavLink>
+                          </li>
+                        )}
+                        <li
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            cursor: "pointer",
+                          }}
+                          onClick={logout}
+                        >
+                          <IoIosLogOut size={24} />
+                          LogOut
                         </li>
                       </ul>
                     </li>
                   ) : (
                     <div
-                      style={{ backgroundImage: "none" }}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        cursor: "pointer",
+                        backgroundImage: "none",
+                      }}
                       className="nav-links login"
+                      onClick={logout}
                     >
-                      <IoIosLogOut
-                        style={{ cursor: "pointer" }}
-                        size={24}
-                        onClick={logout}
-                      />
+                      <IoIosLogOut size={24} />
+                      LogOut
                     </div>
                   )
                 ) : (
-                    <>
-                  <div className="nav-links login">
-                    <NavLink to={"/login"}>SignIn</NavLink>
+                  <>
+                    <div className="nav-links login">
+                      <NavLink to={"/login"}>
+                        <IoIosLogIn size={24} />
+                        SignIn
+                      </NavLink>
                     </div>
                     <div className="nav-links login">
-                      <NavLink to={"/terms"}>
-                        Terms of Service
-                    </NavLink>
-                      </div>
-                      </>
-                  )}
+                      <NavLink to={"/terms"}>Terms of Service</NavLink>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
