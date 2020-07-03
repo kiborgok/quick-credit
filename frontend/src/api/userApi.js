@@ -1,22 +1,20 @@
-export const loadUsers = ({ token }) => (
-    fetch('api/v1/auth/users', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-        .then(response => response.json())
-);
+export const loadUsers = ({ token }) =>
+         fetch("api/v1/auth/users", {
+           method: "GET",
+           headers: {
+             Authorization: `Bearer ${token}`,
+             "Content-Type": "application/json",
+           },
+         }).then((response) => response.json());
 
-export const loadUser = ({ userId, token }) => (
-    fetch(`api/v1/auth/users/user/${userId}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-        .then(response => response.json())
-);
+export const loadUser = ({ userId, token }) =>
+         fetch(`api/v1/auth/users/user/${userId}`, {
+           method: "GET",
+           headers: {
+             Authorization: `Bearer ${token}`,
+             "Content-Type": "application/json",
+           },
+         }).then((response) => response.json());
 
 export const verifyUser = ({ email, token }) => (
     fetch(`api/v1/auth/users/user/${email}/verify`, {

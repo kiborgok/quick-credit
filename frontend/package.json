@@ -38,7 +38,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/",
+  "proxy": "",
   "devDependencies": {
     "redux-immutable-state-invariant": "^2.1.0"
   }

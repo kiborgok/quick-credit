@@ -22,31 +22,32 @@ export const repayLoan = ({ repaymentAmount, loanId, token }) => {
     .then(response => response.json())
 };
 
-export const loadLoans = async ({ token }) => (
-  await fetch('api/v1/loans', {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  })
-    .then(response => response.json())
-);
+export const loadLoans = async ({ token }) =>
+         await fetch("api/v1/loans", {
+           method: "GET",
+           headers: {
+             Authorization: `Bearer ${token}`,
+             "Content-Type": "application/json",
+           },
+         }).then((response) => response.json());
 
 export const loadLoan = async ({ userId, token }) =>
-  await fetch(`api/v1/loans/${userId}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((response) => response.json());
+         await fetch(`api/v1/loans/${userId}`, {
+           method: "GET",
+           headers: {
+             Authorization: `Bearer ${token}`,
+             "Content-Type": "application/json",
+           },
+         }).then((response) => response.json());
 
 export const loadRepaymentHistory = async ({ loanId, token }) =>
-  await fetch(`api/v1/loans/${loanId}/repaymentHistory`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((response) => response.json());
+         await fetch(`api/v1/loans/${loanId}/repaymentHistory`, {
+           method: "GET",
+           headers: {
+             Authorization: `Bearer ${token}`,
+             "Content-Type": "application/json",
+           },
+         }).then((response) => response.json());
 
 export const approveOrRejectLoan = ({ loanId, status, token }) => (
   fetch(`api/v1/loans/${loanId}`, {
