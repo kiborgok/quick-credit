@@ -40,9 +40,6 @@ export function applyLoan(loan) {
                 }
                 return dispatch(receiveErrors(loan))
             })
-            .catch(error => {
-                alert(`Network Error ${error}`)
-            })
     };
 };
 
@@ -56,9 +53,6 @@ export function repayLoan(loan) {
                 }
                 return dispatch(receiveErrors(loan))
             })
-            .catch(error => {
-                alert(`Network Error ${error}`)
-            })
     };
 };
 
@@ -68,9 +62,6 @@ export function loadLoans(loans) {
             .then(loans => {
                 if (loans.data) return dispatch(loadLoansSuccess(loans))
                 return dispatch(receiveErrors(loans))
-            })
-            .catch(error => {
-                alert(`Network Error ${error}`)
             })
     };
 };
@@ -84,9 +75,6 @@ export function loadLoan(loan) {
                 }
                 return dispatch(receiveErrors(loan))
             })
-            .catch(error => {
-                alert(`Network Error ${error}`)
-            })
     };
 };
 
@@ -97,9 +85,6 @@ export function loadHistory(loan) {
                 if (loanHistory.data) return dispatch(loadLoanHistorySuccess(loanHistory))
                 return dispatch(receiveErrors(loanHistory))
             })
-            .catch(error => {
-                alert(`Network Error ${error}`)
-            })
     };
 };
 
@@ -109,9 +94,6 @@ export function approveOrRejectLoan(loan) {
             .then(loan => {
                 if (loan.data) return dispatch(approveOrReject(loan))
                 return dispatch(receiveErrors(loan))
-            })
-            .catch(error => {
-                alert(`Network Error ${error}`)
             })
     };
 };

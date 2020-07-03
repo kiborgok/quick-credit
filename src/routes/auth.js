@@ -117,15 +117,14 @@ authRoutes.post('/signup', async (req, res) => {
 
         transport.sendMail(message, function (err, info) {
             if (err) {
-                console.log(err)
-                //res.json({ 'error': 'There was a problem' });
+                res.json({ 'error': 'There was a problem' });
             } else {
                 console.log(info)
-                //res.json({ 'data': 'Mail sent' + info });
+                res.json({ 'data': 'Mail sent' + info });
             }
         });
 
-        res.json({
+        return res.json({
             'status': 200,
             'data': {
                 verificationToken: accessToken,
@@ -133,7 +132,7 @@ authRoutes.post('/signup', async (req, res) => {
             }
         });
     } catch (err) {
-        res.json({ 'status': 400, 'error': parseError(err) });
+        return res.json({ 'status': 400, 'error': parseError(err) });
     }
 });
 

@@ -13,7 +13,7 @@ const LoanRepaymentHistory = ({ actions, errors, history }) => {
   const auth = JSON.parse(localStorage.getItem('jwt'))
   const [showError, setShowError] = useState(false);
   useEffect(() => {
-    actions.loadHistory({ loanId: auth.loan[0]._id, token: auth.token });
+      actions.loadHistory({ loanId: auth.loan[0]._id, token: auth.token });
   },[]);
 
   useEffect(() => setShowError(false), []);

@@ -36,9 +36,6 @@ export function loadUsers(users) {
                 if (users.data) return dispatch(loadUsersSuccess(users))
                 return dispatch(receiveErrors(users))
             })
-            .catch(error => {
-                alert(`Network Error ${error}`)
-            })
     };
 };
 
@@ -50,9 +47,6 @@ export function loadUser(user) {
                     return dispatch(loadUserSuccess(user))
                 }
                 return dispatch(receiveErrors(user))
-            })
-            .catch(error => {
-                alert(`Network Error ${error}`)
             })
     };
 };
@@ -70,9 +64,6 @@ export function verifyUser(user) {
                 alert('There was a problem ' + user.error)
                 return dispatch(receiveErrors(user))
             })
-            .catch(error => {
-                alert(`Network Error ${error}`)
-            })
     };
 };
 
@@ -88,9 +79,6 @@ export function signup(user) {
                     return dispatch(signInUserSuccess(user))
                 }
                 return dispatch(receiveErrors(user))
-            })
-            .catch(error => {
-                alert(`Network Error ${error}`)
             })
     };
 };
@@ -115,8 +103,6 @@ export const signin = user => dispatch => userApi.signin(user)
         }
         return dispatch(receiveErrors(user))
     })
-    .catch(error => {
-        alert(`Network Error ${error}`)
-    })
+    
 
 
