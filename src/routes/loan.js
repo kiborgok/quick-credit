@@ -97,7 +97,7 @@ loanRoutes.post('/:userId/apply', authenticateJWT, async (req, res) => {
         if (admin !== 'User') return res.json({
             'status': 401,
             'error': 'You are not a user'
-        });
+        }); bb
         if (status !== 'Verified') return res.json({
             'status': 401,
             'error': 'Your details Verification still pending'
@@ -141,7 +141,7 @@ loanRoutes.post('/:userId/apply', authenticateJWT, async (req, res) => {
             req.loan = newLoan;
             User.findOneAndUpdate({ email: req.user.email },
                 { $addToSet: { loan: [req.loan._id] } }, { new: true }, (err, result) => {
-                    if (err) return console.log(err)
+                    if (err) return err
                     return result
                 });
             res.json({

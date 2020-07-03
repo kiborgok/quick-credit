@@ -16,10 +16,6 @@ const UserSchema = new Schema({
     },
     username: {
         type: String,
-        validate: {
-            validator: username => User.doesNotExist({ username }),
-            message: "Username already exists"
-        },
         required: true
     },
     email: {

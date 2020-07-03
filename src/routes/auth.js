@@ -37,7 +37,7 @@ authRoutes.get('/users/user/:id', authenticateJWT, async (req, res) => {
 });
 
 //Verify one user via their email
-authRoutes.post('/users/:email/verify', authenticateJWT, async function (req, res) {
+authRoutes.post('/users/user/:email/verify', authenticateJWT, async function (req, res) {
     try {
         const { admin, status } = req.user;
         if (admin !== 'User') return res.json({ 'status': 403, 'error': 'Forbidden' });

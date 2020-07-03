@@ -1,7 +1,4 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-dotenv.config();
-
 
 export const parseError = (err) => {
     if (err.isJoi) return err.details[0].message;
@@ -22,7 +19,7 @@ export const authenticateJWT = (req, res, next) => {
             if (err) {
               return res.json({
                 status: 403,
-                error: "Token expired or has been modified",
+                error: "Your Token has Expired",
               });
             }
             req.user = user;

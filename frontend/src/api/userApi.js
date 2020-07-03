@@ -22,7 +22,7 @@ export const loadUser = () => (
 );
 
 export const verifyUser = () => (
-    fetch(`api/v1/auth/users/${localStorage.getItem('email')}/verify`, {
+    fetch(`api/v1/auth/users/user/${localStorage.getItem('email')}/verify`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('verificationToken')}`,
