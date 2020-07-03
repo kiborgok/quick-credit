@@ -44,11 +44,11 @@ function App({ history }) {
                     <NavLink to={"/loanApplication"}>Loan Application</NavLink>
                   </div>
                   : null}
-                {authenticated ? authenticated.loan[0] && authenticated.loan[0].status === "Approved" && (
+                {authenticated ? authenticated.loan[0] ? authenticated.loan[0].status === "Approved" && (
                   <div className="nav-links login">
                     <NavLink to={"/loanPayment"}>Loan Payment</NavLink>
                   </div>
-                ) : null}
+                ) : null : null}
                 {authenticated ? null : (
                   <div className="nav-links login">
                     <NavLink to={"/signup"} className="signup login">
