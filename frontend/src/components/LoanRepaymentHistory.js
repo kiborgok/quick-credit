@@ -4,19 +4,19 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import * as loanActions from '../redux/actions/loanActions';
 
-const mapStateToProps = ({ errors, loanHistory }) => ({ errors, loanHistory });
+const mapStateToProps = ({ errors, history }) => ({ errors, history });
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(loanActions, dispatch)
 });
 
-const LoanRepaymentHistory = ({ actions, errors, loanHistory }) => {
+const LoanRepaymentHistory = ({ actions, errors, history }) => {
   const auth = JSON.parse(localStorage.getItem('jwt'))
   const [showError, setShowError] = useState(false);
   useEffect(() => {
-    const id = actions.loadHistory({ loanId: auth.loan[0]._id, token: auth.token })
-    setShowError(false)
-    return () => id
-  }, [actions, auth]);
+    actions.loadHistory({ loanId: auth.loan[0]._id, token: auth.token });
+  },[]);
+
+  useEffect(() => setShowError(false), []);
 
   return (
     <>
@@ -25,9 +25,9 @@ const LoanRepaymentHistory = ({ actions, errors, loanHistory }) => {
           <h1>Repayment History</h1>
         </header>
         <div className='error'>{showError && errors}</div>
-        {loanHistory.length === 0 ? 'You have no loan repayment history' : (
+        {history.length === 0 ? 'You have no loan repayment history' : (
           <>
-            {loanHistory.map((history) => (
+            {history.map((history) => (
               <div
                 key={history._id}
                 style={{

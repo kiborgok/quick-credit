@@ -14,9 +14,8 @@ const LoanDetails = ({ actions, loans, errors }) => {
   const auth = JSON.parse(localStorage.getItem('jwt'))
   const [showError, setShowError] = useState(false);
   useEffect(() => {
-    const id = actions.loadLoan({ userId: auth.userId, token: auth.token });
-    return () => id
-  }, [actions, auth]);
+    actions.loadLoan({ userId: auth.userId, token: auth.token });
+  }, [actions, auth.userId, auth.token]);
   useEffect(() => setShowError(false), [])
   return (
     <>
