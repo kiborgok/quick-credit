@@ -11,8 +11,7 @@ export const loadUser = ({ userId, token }) =>
          fetch(`api/v1/auth/users/user/${userId}`, {
            method: "GET",
            headers: {
-             Authorization: `Bearer ${token}`,
-             "Content-Type": "application/json",
+             Authorization: `Bearer ${token}`
            },
          }).then((response) => response.json());
 
