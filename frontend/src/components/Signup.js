@@ -136,9 +136,9 @@ const Signup = ({ errors, actions, history }) => {
             {...formik.getFieldProps("passwordConfirmation")}
           />
           {formik.touched.passwordConfirmation &&
-          formik.errors.passwordConfirmation ? (
+            formik.errors.passwordConfirmation ? (
               <div className='error'>{formik.errors.passwordConfirmation}</div>
-          ) : null}
+            ) : null}
         </div>
         <div className="form-row">
           <button type='submit'>

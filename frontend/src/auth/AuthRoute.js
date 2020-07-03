@@ -2,14 +2,12 @@ import React from 'react';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
 const AuthRoute = ({ path, component: Component }) => {
-    const loggedIn = localStorage.getItem('user');
+    const auth = JSON.parse(localStorage.getItem('jwt'));
     return (
         <Route
             path={path}
             render={props => (
-                loggedIn === 'User' || loggedIn === 'Admin' ?
-                    <Redirect to='/' /> :
-                    <Component {...props} />
+                auth ? <Redirect to='/' /> : <Component {...props} />
             )}
         />
     )

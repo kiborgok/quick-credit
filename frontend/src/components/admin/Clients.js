@@ -15,9 +15,10 @@ const mapDispatchToProps = dispatch => ({
 
 
 const Clients = ({ actions, errors, users }) => {
+    const auth = JSON.parse(localStorage.getItem('jwt'))
     useEffect(() => {
-        (users.length === 0) && actions.loadUsers()
-    }, [actions, users]);
+        (users.length === 0) && actions.loadUsers({ token: auth.token })
+    }, [actions, users, auth]);
 
     return (
         <>

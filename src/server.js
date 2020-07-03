@@ -23,7 +23,7 @@ dotenv.config();
         console.log("MongoDB connected");
 
         const app = express();
-        
+
         // Serve static assets if in production
         if (process.env.NODE_ENV === "production") {
             // Set static folder

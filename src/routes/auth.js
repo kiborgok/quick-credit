@@ -24,12 +24,12 @@ authRoutes.get('/users', authenticateJWT, async (req, res) => {
 });
 
 //Get one user by id
-authRoutes.get('/users/user/:id', authenticateJWT, async (req, res) => {
+authRoutes.get('/users/user/:userId', authenticateJWT, async (req, res) => {
     try {
         const { admin } = req.user;
         if (!admin) return res.json({ 'status': 403, 'error': 'Forbidden' });
-        const { id } = req.params;
-        let foundUser = await User.find({ _id: id }).populate('loan');
+        const { userId } = req.params;
+        let foundUser = await User.find({ _id: userId }).populate('loan');
         res.json({ 'status': 200, 'data': foundUser });
     } catch (err) {
         res.json({ 'status': 404, 'error': 'User not found' });
@@ -92,20 +92,20 @@ authRoutes.post('/signup', async (req, res) => {
         req.user = newUser;
 
         let transport = nodemailer.createTransport({
-          host: process.env.EMAIL_HOST || "smtp.gmail.com",
-          port: process.env.EMAIL_PORT || 465,
-          secure: true,
-          auth: {
-            user: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
-            pass: process.env.EMAIL_SENDER_PASS || "Matesya1@#$",
-          },
+            host: process.env.EMAIL_HOST || "smtp.gmail.com",
+            port: process.env.EMAIL_PORT || 465,
+            secure: true,
+            auth: {
+                user: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
+                pass: process.env.EMAIL_SENDER_PASS || "Matesya1@#$",
+            },
         });
 
         const message = {
             from: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
-          to: email,
-          subject: "Quick Credit",
-          html: ` <div>
+            to: email,
+            subject: "Quick Credit",
+            html: ` <div>
                         <h3>Hi ${firstName},</h3>
                         <p>Thank you for registering with us.</p>
                         <p>Click here <a href='https://quick-credit-webapp.herokuapp.com/verify'>https://quick-credit-webapp.herokuapp.com/verify</a> to verify your account.</p>
@@ -150,12 +150,12 @@ authRoutes.post('/signin', async (req, res) => {
             }
             const accessToken = generateAccessToken(user);
             req.user = user;
-            const { id, loan, username, firstName, secondName, status, email, admin } = req.user;
+            const { _id, loan, username, firstName, secondName, status, email, admin } = req.user;
             res.json({
                 'status': 200,
                 'data': {
                     'token': accessToken,
-                    'userId': id,
+                    'userId': _id,
                     'loan': loan,
                     'status': status,
                     'username': username,

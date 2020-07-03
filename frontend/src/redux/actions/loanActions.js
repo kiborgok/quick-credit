@@ -62,9 +62,9 @@ export function repayLoan(loan) {
     };
 };
 
-export function loadLoans() {
+export function loadLoans(loans) {
     return function (dispatch) {
-        return loanApi.loadLoans()
+        return loanApi.loadLoans(loans)
             .then(loans => {
                 if (loans.data) return dispatch(loadLoansSuccess(loans))
                 return dispatch(receiveErrors(loans))
@@ -75,9 +75,9 @@ export function loadLoans() {
     };
 };
 
-export function loadLoan() {
+export function loadLoan(loan) {
     return function (dispatch) {
-        return loanApi.loadLoan()
+        return loanApi.loadLoan(loan)
             .then(loan => {
                 if (loan.data) {
                     return dispatch(loadLoanSuccess(loan))
@@ -90,9 +90,9 @@ export function loadLoan() {
     };
 };
 
-export function loadHistory(loanId) {
+export function loadHistory(loan) {
     return function (dispatch) {
-        return loanApi.loadRepaymentHistory(loanId)
+        return loanApi.loadRepaymentHistory(loan)
             .then(loanHistory => {
                 if (loanHistory.data) return dispatch(loadLoanHistorySuccess(loanHistory))
                 return dispatch(receiveErrors(loanHistory))

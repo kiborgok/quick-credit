@@ -1,13 +1,11 @@
 import React from 'react';
 
 const Dashboard = () => {
-    const username = localStorage.getItem('username');
-    const id = localStorage.getItem('userId');
-    const user = localStorage.getItem('user');
+    const auth = JSON.parse(localStorage.getItem('jwt'));
     return (
-        <div style={{display:'flex', flexDirection:'column'}}>
-            <h1 style={{marginBottom: '2px'}}>{id ? user === 'Admin' ? `Welcome ${user}` : `Welcome ${username}` : `Welcome to Quick credit`}</h1>
-            <video height='430' width='720' autoPlay={true} controls>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h1 style={{ marginBottom: '2px' }}>{auth ? auth.user === 'Admin' ? `Welcome Admin` : `Welcome ${auth.username}` : `Welcome to Quick credit`}</h1>
+            <video style={{ display: 'flex', flexDirection: 'column', width: '100%' }} autoPlay={true} controls>
                 <source src='/video/quick-loan-basics.mp4' type='video/mp4' />
                 Your browser does not support the video tag.
             </video>

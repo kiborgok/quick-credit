@@ -2,11 +2,11 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 const Terms = () => (
-        <>
-        <div className="loan-form" style={{ width: '50%' }}>
-                <header>
-                    <h1>Terms & conditions</h1>
-                </header>
+    <>
+        <div className="loan-form">
+            <header>
+                <h1>Terms & conditions</h1>
+            </header>
             <div className='form-data'>
                 <h1><em>NOTE:</em> QUICK CREDIT DOES NOT OFFER REAL MONEY</h1>
                 <h2>Introduction</h2>
@@ -17,7 +17,7 @@ const Terms = () => (
                 <p>You are granted limited license only for purposes of viewing the material contained on this Website.</p>
                 <h2>Restrictions</h2>
                 <p>You are specifically restricted from all of the following:</p>
-                <ol style={{paddingLeft:'15px'}}>
+                <ol style={{ paddingLeft: '15px' }}>
                     <li>publishing any Website material in any other media.</li>
                     <li>selling, otherwise commercializing any Website material;</li>
                     <li>publicly performing and/or showing any Website material;</li>
@@ -33,8 +33,8 @@ const Terms = () => (
                 <h2>Entire agreement</h2>
                 <p>These Terms constitute the entire agreement between Quick Credit and you in relation to your use of this Website, and supersede all prior agreements and understandings.</p>
             </div>
-            </div>
-        </>
-    );
+        </div>
+    </>
+);
 
 export default withRouter(Terms);

@@ -1,7 +1,4 @@
-const token = localStorage.getItem('token');
-const id = localStorage.getItem('userId');
-
-export const loadUsers = () => (
+export const loadUsers = ({ token }) => (
     fetch('api/v1/auth/users', {
         method: 'GET',
         headers: {
@@ -11,8 +8,8 @@ export const loadUsers = () => (
         .then(response => response.json())
 );
 
-export const loadUser = () => (
-    fetch(`api/v1/auth/users/user/${id}`, {
+export const loadUser = ({ userId, token }) => (
+    fetch(`api/v1/auth/users/user/${userId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -21,11 +18,11 @@ export const loadUser = () => (
         .then(response => response.json())
 );
 
-export const verifyUser = () => (
-    fetch(`api/v1/auth/users/user/${localStorage.getItem('email')}/verify`, {
+export const verifyUser = ({ email, token }) => (
+    fetch(`api/v1/auth/users/user/${email}/verify`, {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('verificationToken')}`,
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         }
     })

@@ -97,7 +97,7 @@ loanRoutes.post('/:userId/apply', authenticateJWT, async (req, res) => {
         if (admin !== 'User') return res.json({
             'status': 401,
             'error': 'You are not a user'
-        }); bb
+        });
         if (status !== 'Verified') return res.json({
             'status': 401,
             'error': 'Your details Verification still pending'
@@ -111,14 +111,14 @@ loanRoutes.post('/:userId/apply', authenticateJWT, async (req, res) => {
                 error: "Sorry! Continue visiting our site for a chance to get a loan",
             });
             if (checkNotPaid[0].status === "Pending")
-              return res.json({
-                status: 401,
-                error: "You already have a loan with us, pending approval",
-              });
-             if (checkNotPaid[0].status === "Approved") return res.json({
+                return res.json({
+                    status: 401,
+                    error: "You already have a loan with us, pending approval",
+                });
+            if (checkNotPaid[0].status === "Approved") return res.json({
                 status: 401,
                 error: "You have an active loan with us",
-              });
+            });
         }
 
         const checkrepaid = withLoan.filter(loan => loan.repaid === true)

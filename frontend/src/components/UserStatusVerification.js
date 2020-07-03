@@ -10,16 +10,15 @@ const mapDispatchToProps = dispatch => (
 );
 
 const UserStatusVerification = ({ actions, history }) => {
+    const verify = JSON.parse(localStorage.getItem('verify'));
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         setLoading(true)
-        actions.verifyUser()
+        actions.verifyUser({ email: verify.email, token: verify.token })
         history.push('/login')
         setLoading(false)
-        localStorage.removeItem('verificationToken');
-        localStorage.removeItem('email');
-        //window.location.reload()
-    }, [actions, history])
+        localStorage.removeItem('verify');
+    }, [actions, history, verify])
     return (
         <>
             {loading ? <h3>loading....</h3> : null}

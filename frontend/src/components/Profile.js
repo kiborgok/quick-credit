@@ -11,11 +11,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Profile = ({ actions, users, errors }) => {
+  const auth = JSON.parse(localStorage.getItem('jwt'))
   const [showError, setShowError] = useState(false);
   useEffect(() => {
-    const id = actions.loadUser();
+    const id = actions.loadUser({ userId: auth.userId, token: auth.token });
     return () => id
-  }, [actions]);
+  }, [actions, auth]);
 
   useEffect(() => setShowError(false), [])
   return (
@@ -26,37 +27,37 @@ const Profile = ({ actions, users, errors }) => {
         </header>
         <p className='error'>{showError && errors}</p>
         {users.length === 0 ? 'No data' : (
-        <>
-          {
-            users.map(user => (
-              <div
-                key={user._id}
-                style={{
-                  display: "flex",
-                  alignSelf: "center",
-                  flexDirection: "column",
-                  marginTop: "20px",
-                  borderRadius: "8px",
-                  padding: "15px",
-                  boxShadow: "0px 2px 10px 0px #185a9d",
-                }}
-              >
-                <p style={{ padding: "5px" }}>
-                  <em style={{ fontWeight: "bold" }}>First Name: </em>{" "}
-                  {user.firstName}
-                </p>
-                <p style={{ padding: "5px" }}>
-                  <em style={{ fontWeight: "bold" }}>Second Name:</em>{" "}
-                  {user.secondName}
-                </p>
-                <p style={{ padding: "5px" }}>
-                  <em style={{ fontWeight: "bold" }}>Email:</em>{" "}
-                  {user.email}
-                </p>
-              </div>
-            ))
+          <>
+            {
+              users.map(user => (
+                <div
+                  key={user._id}
+                  style={{
+                    display: "flex",
+                    alignSelf: "center",
+                    flexDirection: "column",
+                    marginTop: "20px",
+                    borderRadius: "8px",
+                    padding: "15px",
+                    boxShadow: "0px 2px 10px 0px #185a9d",
+                  }}
+                >
+                  <p style={{ padding: "5px" }}>
+                    <em style={{ fontWeight: "bold" }}>First Name: </em>{" "}
+                    {user.firstName}
+                  </p>
+                  <p style={{ padding: "5px" }}>
+                    <em style={{ fontWeight: "bold" }}>Second Name:</em>{" "}
+                    {user.secondName}
+                  </p>
+                  <p style={{ padding: "5px" }}>
+                    <em style={{ fontWeight: "bold" }}>Email:</em>{" "}
+                    {user.email}
+                  </p>
+                </div>
+              ))
             }
-            </>
+          </>
         )
         }
       </div>

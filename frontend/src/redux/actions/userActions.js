@@ -6,7 +6,7 @@ export const receiveErrors = error => (
 );
 
 export const clearErrors = () => (
-    { type: types.CLEAR_ERRORS, error: ''}
+    { type: types.CLEAR_ERRORS, error: '' }
 );
 
 export const signUpUserSuccess = user => (
@@ -29,9 +29,9 @@ export const verifyUserSuccess = user => (
     { type: types.VERIFY_USER_SUCCESS, user: user.data }
 );
 
-export function loadUsers() {
+export function loadUsers(users) {
     return function (dispatch) {
-        return userApi.loadUsers()
+        return userApi.loadUsers(users)
             .then(users => {
                 if (users.data) return dispatch(loadUsersSuccess(users))
                 return dispatch(receiveErrors(users))
@@ -42,9 +42,9 @@ export function loadUsers() {
     };
 };
 
-export function loadUser() {
+export function loadUser(user) {
     return function (dispatch) {
-        return userApi.loadUser()
+        return userApi.loadUser(user)
             .then(user => {
                 if (user.data) {
                     return dispatch(loadUserSuccess(user))
@@ -57,9 +57,9 @@ export function loadUser() {
     };
 };
 
-export function verifyUser() {
+export function verifyUser(user) {
     return function (dispatch) {
-        return userApi.verifyUser()
+        return userApi.verifyUser(user)
             .then(user => {
                 if (user.data) {
                     alert('You have successfully verified your account')
@@ -81,8 +81,9 @@ export function signup(user) {
         return userApi.signup(user)
             .then(user => {
                 if (user.data) {
-                    localStorage.setItem('verificationToken', user.data.verificationToken);
-                    localStorage.setItem('email', user.data.email);
+                    localStorage.setItem('verify', {
+                        token: user.data.verificationToken, email: user.data.email
+                    })
                     alert('Check mail to verify your account')
                     return dispatch(signInUserSuccess(user))
                 }
@@ -97,22 +98,18 @@ export function signup(user) {
 export const signin = user => dispatch => userApi.signin(user)
     .then(user => {
         if (user.data) {
-            if (user.data.loan[0]) {
-                localStorage.setItem('token', user.data.token)
-                localStorage.setItem('username', user.data.username)
-                localStorage.setItem('userId', user.data.userId)
-                localStorage.setItem('user', user.data.admin)
-                localStorage.setItem('userStatus', user.data.status)
-                localStorage.setItem('loanStatus', user.data.loan[0].status)
-                localStorage.setItem('loanId', user.data.loan[0]._id)
-                return dispatch(signInUserSuccess(user))
-            } else {
-                localStorage.setItem('token', user.data.token)
-                localStorage.setItem('username', user.data.username)
-                localStorage.setItem('userId', user.data.userId)
-                localStorage.setItem('user', user.data.admin)
-                localStorage.setItem('userStatus', user.data.status)
-                localStorage.setItem('loanStatus', 'No loan')
+            if (user.data) {
+                localStorage.setItem('jwt', JSON.stringify({
+                    'token': user.data.token,
+                    'userId': user.data.userId,
+                    'loan': user.data.loan,
+                    'status': user.data.status,
+                    'username': user.data.username,
+                    'firstName': user.data.firstName,
+                    'secondName': user.data.secondName,
+                    'email': user.data.email,
+                    'admin': user.data.admin
+                }))
                 return dispatch(signInUserSuccess(user))
             }
         }

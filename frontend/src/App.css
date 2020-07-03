@@ -4,12 +4,6 @@
   box-sizing: border-box;
 }
 
-body{
-  font-family: cursive, Arial, Helvetica, sans-serif;
-  font-size: small;
-  color: black;
-}
-
 .App{
   min-height: 603px;
 }
@@ -31,6 +25,7 @@ body{
   display: flex;
   align-items: center;
   font-weight: bold;
+  color:orange;
 }
 
 .links {
@@ -44,7 +39,7 @@ body{
 }
 
 .nav-links > a.active {
-  color: yellow;
+  color: orangered;
 }
 
 .nav-links:hover {
@@ -56,7 +51,7 @@ body{
   align-items: center;
   text-decoration: none;
   padding: 2px;
-  color: black;
+  color: orange;
 }
 .login {
   padding-left: 10px;
@@ -271,12 +266,11 @@ th {
   display: none;
 }
 
-/* Profile Menu */
-
-
+/* Account Menu */
 .dropdown {
   position: relative;
   list-style: none;
+  color: orange;
 }
 
 .dropdown>span {
@@ -318,10 +312,66 @@ th {
 }
 
 .features-menu li a {
-  color: black;
+  color: orange;
   text-decoration: none;
 }
 
 .features-menu li:last-of-type {
   border-bottom: none;
+}
+
+#root {
+    max-width: 75%;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background: url('/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+/* Mobile */
+@media only screen and (max-width: 416px) {
+  html{
+    display: flex;
+  height: -webkit-fill-available;
+  width: 100%;
+}
+body {
+  display: flex;
+  height: -webkit-fill-available;
+  width: 100%;
+}
+  
+  #root{
+    height: -webkit-fill-available;
+    max-width: 100%;
+  }
+  .App{
+    min-height: -webkit-fill-available;
+  }
+  .loan-form{
+    width: 90%;
+  }
+}
+
+/* Tablet */
+@media only screen and (max-width: 1024px) {
+  html{
+    display: flex;
+    height: -webkit-fill-available;
+  }
+  body {
+    display: flex;
+    height: -webkit-fill-available;
+    width: 100%;
+  }
+  #root{
+    height: -webkit-fill-available;
+  }
+  .App{
+    min-height: -webkit-fill-available;
+  }
 }

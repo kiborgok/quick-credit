@@ -22,18 +22,10 @@ import {
 } from "react-icons/io";
 
 function App({ history }) {
-  let loggedIn = localStorage.getItem('user');
-  let loanStatus = localStorage.getItem('loanStatus');
-  let userStatus = localStorage.getItem('userStatus');
+  let authenticated = JSON.parse(localStorage.getItem('jwt'));
 
   const logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('userId')
-    localStorage.removeItem('username')
-    localStorage.removeItem('user')
-    localStorage.removeItem('loanStatus')
-    localStorage.removeItem('userStatus')
-    localStorage.removeItem('loanId')
+    localStorage.removeItem('jwt')
     history.push('/login')
   }
   return (
@@ -47,54 +39,50 @@ function App({ history }) {
                 <div className="nav-links login">
                   <NavLink to={"/dashboard"}>Dashboard</NavLink>
                 </div>
-                {loggedIn === "User" && userStatus === "Verified" && (
+                {authenticated ? (authenticated.admin === "User" && authenticated.status === "Verified") &&
                   <div className="nav-links login">
                     <NavLink to={"/loanApplication"}>Loan Application</NavLink>
                   </div>
-                )}
-                {loanStatus === "Approved" && (
+                  : null}
+                {authenticated ? authenticated.loan[0] && authenticated.loan[0].status === "Approved" && (
                   <div className="nav-links login">
                     <NavLink to={"/loanPayment"}>Loan Payment</NavLink>
                   </div>
-                )}
-                {loggedIn === "User" || loggedIn === "Admin" ? null : (
+                ) : null}
+                {authenticated ? null : (
                   <div className="nav-links login">
                     <NavLink to={"/signup"} className="signup login">
                       SignUp
                     </NavLink>
                   </div>
                 )}
-                {loggedIn === "Admin" && (
-                  <div className="nav-links login">
-                    <NavLink to={"/clients"}>Clients</NavLink>
-                  </div>
-                )}
-                {loggedIn === "Admin" && (
-                  <div className="nav-links login">
-                    <NavLink to={"/loanApplications"}>
-                      Loan Applications
+                {authenticated ? authenticated.admin === "Admin" && (
+                  <>
+                    <div className="nav-links login">
+                      <NavLink to={"/clients"}>Clients</NavLink>
+                    </div>
+                    <div className="nav-links login">
+                      <NavLink to={"/loanApplications"}>
+                        Loan Applications
                     </NavLink>
-                  </div>
-                )}
-                {loggedIn ? (
-                  loggedIn === "User" ? (
+                    </div>
+                  </>
+                ) : null}
+                {authenticated ? (
+                  authenticated.admin === "User" ? (
                     <li
                       className="dropdown nav-links"
                       style={{ paddingLeft: "20px", backgroundImage: "none" }}
                     >
                       <span>Account &#9662;</span>
                       <ul className="features-menu">
-                        {loggedIn === "User" && (
-                          <li>
-                            <NavLink to={"/profile"}>Profile</NavLink>
-                          </li>
-                        )}
-                        {loggedIn === "User" && (
-                          <li>
-                            <NavLink to={"/loanDetails"}>Loans</NavLink>
-                          </li>
-                        )}
-                        {loggedIn === "User" && loanStatus === "Approved" && (
+                        <li>
+                          <NavLink to={"/profile"}>Profile</NavLink>
+                        </li>
+                        <li>
+                          <NavLink to={"/loanDetails"}>Loans</NavLink>
+                        </li>
+                        {authenticated.admin === "User" && authenticated.loan[0].status === "Approved" && (
                           <li>
                             <NavLink to={"/loanRepaymentHistory"}>
                               History
@@ -115,33 +103,33 @@ function App({ history }) {
                       </ul>
                     </li>
                   ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        cursor: "pointer",
-                        backgroundImage: "none",
-                      }}
-                      className="nav-links login"
-                      onClick={logout}
-                    >
-                      <IoIosLogOut size={24} />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          cursor: "pointer",
+                          backgroundImage: "none",
+                        }}
+                        className="nav-links login"
+                        onClick={logout}
+                      >
+                        <IoIosLogOut size={24} />
                       LogOut
-                    </div>
-                  )
+                      </div>
+                    )
                 ) : (
-                  <>
-                    <div className="nav-links login">
-                      <NavLink to={"/login"}>
-                        <IoIosLogIn size={24} />
+                    <>
+                      <div className="nav-links login">
+                        <NavLink to={"/login"}>
+                          <IoIosLogIn size={24} />
                         SignIn
                       </NavLink>
-                    </div>
-                    <div className="nav-links login">
-                      <NavLink to={"/terms"}>Terms of Service</NavLink>
-                    </div>
-                  </>
-                )}
+                      </div>
+                      <div className="nav-links login">
+                        <NavLink to={"/terms"}>Terms of Service</NavLink>
+                      </div>
+                    </>
+                  )}
               </div>
             </div>
           </div>
