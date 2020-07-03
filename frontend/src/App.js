@@ -82,13 +82,13 @@ function App({ history }) {
                         <li>
                           <NavLink to={"/loanDetails"}>Loans</NavLink>
                         </li>
-                        {authenticated.admin === "User" && authenticated.loan[0].status === "Approved" && (
+                        {authenticated ? (authenticated.loan[0] && authenticated.admin === "User") ? authenticated.loan[0].status === "Approved" && (
                           <li>
                             <NavLink to={"/loanRepaymentHistory"}>
                               History
                             </NavLink>
                           </li>
-                        )}
+                        ) : null : null}
                         <li
                           style={{
                             display: "flex",
