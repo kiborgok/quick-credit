@@ -10,8 +10,11 @@ export const loadUsers = ({ token }) =>
 export const loadUser = ({ userId, token }) =>
          fetch(`api/v1/auth/users/${userId}`, {
            method: "GET",
-           headers: {
-             Authorization: `Bearer ${token}`
+             headers: {
+               
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+             Accept: "application/json",
            },
          }).then((response) => response.json());
 
