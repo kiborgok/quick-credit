@@ -8,7 +8,7 @@ export const loadUsers = ({ token }) =>
          }).then((response) => response.json());
 
 export const loadUser = ({ userId, token }) =>
-         fetch(`api/v1/auth/users/user/${userId}`, {
+         fetch(`api/v1/auth/users/${userId}`, {
            method: "GET",
            headers: {
              Authorization: `Bearer ${token}`
@@ -16,7 +16,7 @@ export const loadUser = ({ userId, token }) =>
          }).then((response) => response.json());
 
 export const verifyUser = ({ email, token }) => (
-    fetch(`api/v1/auth/users/user/${email}/verify`, {
+    fetch(`api/v1/auth/users/${email}/verify`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,

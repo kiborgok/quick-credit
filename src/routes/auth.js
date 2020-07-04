@@ -24,7 +24,7 @@ authRoutes.get('/users', authenticateJWT, async (req, res) => {
 });
 
 //Get one user by id
-authRoutes.get('/users/user/:userId', authenticateJWT, async (req, res) => {
+authRoutes.get('/users/:userId', authenticateJWT, async (req, res) => {
     try {
         const { admin } = req.user;
         if (!admin) return res.json({ 'status': 403, 'error': 'Forbidden' });
@@ -37,7 +37,7 @@ authRoutes.get('/users/user/:userId', authenticateJWT, async (req, res) => {
 });
 
 //Verify one user via their email
-authRoutes.post('/users/user/:email/verify', authenticateJWT, async function (req, res) {
+authRoutes.post('/users/:email/verify', authenticateJWT, async function (req, res) {
     try {
         const { admin, status } = req.user;
         if (admin !== 'User') return res.json({ 'status': 403, 'error': 'Forbidden' });
