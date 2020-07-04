@@ -6,7 +6,9 @@ const userReducer = (state = initialState.users, action) => {
         case types.LOAD_USERS_SUCCESS:
             return action.users
         case types.LOAD_USER_SUCCESS:
-            return action.user
+            return [
+                ...state, { ...state, ...action.user }
+            ]
         case types.SIGN_UP_USER_SUCCESS:
             return action.user
         case types.VERIFY_USER_SUCCESS:

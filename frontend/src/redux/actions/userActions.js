@@ -43,7 +43,6 @@ export function loadUser(user) {
     return function (dispatch) {
         return userApi.loadUser(user)
             .then(user => {
-                console.log(user.data)
                 if (user.data) {
                     return dispatch(loadUserSuccess(user))
                 }
