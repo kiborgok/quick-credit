@@ -11,11 +11,11 @@ export const loadUser = ({ userId, token }) =>
          fetch(`api/v1/auth/users/${userId}`, {
            method: "GET",
              headers: {
-               
             'Authorization': 'Bearer '+token,
              'Accept': 'application/json',
            },
-         }).then(response => response.json());
+         })
+        .then(response => response.json())
 
 export const verifyUser = ({ email, token }) => (
     fetch(`api/v1/auth/users/${email}/verify`, {

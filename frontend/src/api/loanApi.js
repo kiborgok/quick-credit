@@ -38,7 +38,7 @@ export const loadLoan = async ({ userId, token }) =>
              Authorization: `Bearer ${token}`,
              "Content-Type": "application/json",
            },
-         }).then((response) => response.json());
+         }).then((response) => response.json())
 
 export const loadRepaymentHistory = async ({ loanId, token }) =>
          await fetch(`api/v1/loans/${loanId}/repaymentHistory`, {
@@ -47,7 +47,7 @@ export const loadRepaymentHistory = async ({ loanId, token }) =>
              Authorization: `Bearer ${token}`,
              "Content-Type": "application/json",
            },
-         }).then((response) => response.json());
+         }).then((response) => response.json())
 
 export const approveOrRejectLoan = ({ loanId, status, token }) => (
   fetch(`api/v1/loans/${loanId}`, {
