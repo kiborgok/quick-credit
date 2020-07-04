@@ -30,9 +30,7 @@ dotenv.config();
             // Set static folder
             app.use(
               express.static("frontend/build", {
-                setHeaders: function (res) {
-                  res.type("json");;
-                },
+                setHeaders: res => res.type("json"),
               })
             );
 
