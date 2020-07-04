@@ -12,9 +12,9 @@ export const loadUser = ({ userId, token }) =>
            method: "GET",
              headers: {
                
-            Authorization: `Bearer ${token}`,
+            'Authorization': 'Bearer '+token,
             'Content-Type': 'application/json',
-             Accept: "application/json",
+             'Accept': "application/json",
            },
          }).then(response => response.json());
 
