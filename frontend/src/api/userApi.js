@@ -13,10 +13,9 @@ export const loadUser = ({ userId, token }) =>
              headers: {
                
             'Authorization': 'Bearer '+token,
-            'Content-Type': 'application/json',
-             'Accept': "application/json",
+             'Accept': 'application/json',
            },
-         }).then(response => response.json());
+         }).then(response => response.json(response));
 
 export const verifyUser = ({ email, token }) => (
     fetch(`api/v1/auth/users/${email}/verify`, {
