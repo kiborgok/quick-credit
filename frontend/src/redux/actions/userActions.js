@@ -1,5 +1,6 @@
 import * as userApi from '../../api/userApi';
 import * as types from './actionTypes';
+import { response } from 'express';
 
 export const receiveErrors = error => (
     { type: types.RECEIVE_ERRORS, error: error.error }
@@ -42,6 +43,7 @@ export function loadUsers(users) {
 export function loadUser(user) {
     return function (dispatch) {
         return userApi.loadUser(user)
+            .then(response => response.json())
             .then(user => {
                 if (user.data) {
                     return dispatch(loadUserSuccess(user))
