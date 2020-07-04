@@ -27,7 +27,6 @@ dotenv.config();
 
         // Serve static assets if in production
         if (process.env.NODE_ENV === "production") {
-            app.set("json");
             // Set static folder
             app.use(express.static("frontend/build"));
 
@@ -46,6 +45,7 @@ dotenv.config();
 
         app.disable("x-powered-by");
         app.use(
+            express.json(),
           cors({ credentials: true }),
           express.urlencoded({ extended: true }),
           bodyParser.json()
