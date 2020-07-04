@@ -45,9 +45,10 @@ dotenv.config();
 
         app.disable("x-powered-by");
         app.use(
-            cors({ credentials: true }),
-            express.urlencoded({ extended: true }),
-            bodyParser.json()
+          cors({ credentials: true }),
+          express.urlencoded({ extended: true }),
+          bodyParser.json(),
+          res.type("json")
         );
 
         const apiRouter = express.Router();
