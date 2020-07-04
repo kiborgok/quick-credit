@@ -47,8 +47,7 @@ dotenv.config();
         app.use(
           cors({ credentials: true }),
           express.urlencoded({ extended: true }),
-          bodyParser.json(),
-          res.type("json")
+          bodyParser.json()
         );
 
         const apiRouter = express.Router();
