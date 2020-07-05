@@ -30,7 +30,6 @@ authRoutes.get('/users/:userId', authenticateJWT, async (req, res) => {
         if (!admin) return res.json({ 'status': 403, 'error': 'Forbidden' });
         const { userId } = req.params;
         let foundUser = await User.findOne({ _id: userId }).populate('loan');
-        res.set("Content-Type", "application/json");
         return res.json({ 'status': 200, 'data': foundUser });
     } catch (err) {
         return res.json({ 'status': 404, 'error': 'User not found' });
