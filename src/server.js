@@ -47,7 +47,7 @@ dotenv.config();
       app.get("/*", (req, res) => {
         res.sendFile(path.join(__dirname, "/", "../client/build", "index.html"), {
           'setHeaders': function (res) {
-            res.setHeader("Content-Type", "application/json");
+            res.set('Content-Type', 'application/json');
           }
         });
       });
