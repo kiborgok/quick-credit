@@ -45,9 +45,8 @@ dotenv.config();
       app.use("/", express.static("client/build"));
 
       app.get("/*", (req, res) => {
-        res.sendFile(path.join(__dirname, "/", "../client/build", "index.html"), {
-          'headers': { 'Content-Type': 'json'}
-        });
+        res.sendFile(path.join(__dirname, "/", "../client/build", "index.html"));
+        res.json()
       });
     }
 
