@@ -42,11 +42,7 @@ dotenv.config();
     // }
     if (process.env.NODE_ENV === "production") {
       // Set static folder
-      app.use("/", express.static("client/build"), {
-        'setHeaders': function (res) {
-          res.setHeader("Content-Type", "application/json");
-        }
-      });
+      app.use("/", express.static("client/build"));
 
       app.get("/*", (req, res) => {
         res.sendFile(path.join(__dirname, "/", "../client/build", "index.html"), {
