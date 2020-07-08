@@ -33,19 +33,19 @@ dotenv.config();
     // Serve static assets if in production
     // if (process.env.NODE_ENV === "production") {
     //   // Set static folder
-    //   app.use(express.static("quick-credit-frontend/build"));
+    //   app.use(express.static("quick-credit-client/build"));
     //   app.get("*", (req, res) => {
     //     res.sendFile(
-    //       path.join(__dirname, "/", "../quick-credit-frontend/build", "index.html")
+    //       path.join(__dirname, "/", "../quick-credit-client/build", "index.html")
     //     );
     //   });
     // }
     if (process.env.NODE_ENV === "production") {
       // Set static folder
-      app.use('/', express.static("frontend/build"));
+      app.use('/', express.static("client/build"));
 
       app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "frontend/build", "index.html"));
+        res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
       });
     }
 
