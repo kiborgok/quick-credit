@@ -5,6 +5,7 @@
   "main": "./src/index.js",
   "module": "main.js",
   "engines": {
+    "npm": "6.14.5",
     "node": "14.4.0"
   },
   "scripts": {
