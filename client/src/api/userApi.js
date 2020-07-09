@@ -7,15 +7,15 @@ export const loadUsers = ({ token }) =>
            },
          }).then((response) => response.json());
 
-export const loadUser = ({ userId, token }) =>
-         fetch(`api/v1/auth/users/${userId}`, {
+export const loadUser = async ({ userId, token }) =>
+         await fetch(`api/v1/auth/users/${userId}`, {
            method: "GET",
              headers: {
             'Authorization': 'Bearer '+token,
              'Accept': 'application/json',
            },
          })
-        .then(response => response.json())
+        const response = response.json()
 
 export const verifyUser = ({ email, token }) => (
     fetch(`api/v1/auth/users/${email}/verify`, {

@@ -29,8 +29,21 @@ authRoutes.get('/users/:userId', authenticateJWT, async (req, res) => {
         const { admin } = req.user;
         if (!admin) return res.json({ 'status': 403, 'error': 'Forbidden' });
         const { userId } = req.params;
-        let foundUser = await User.findOne({ _id: userId }).populate('loan');
-        res.json({ 'status': 200, 'data': foundUser });
+        await User.findOne({ _id: userId }).populate('loan');
+        res.json({
+            'status': 200, 'data': {
+                _id:req.user._id,
+                loan: req.user.loan,
+                admin: req.user.admin,
+                status: req.user.status,
+                firstName: req.user.firstName,
+                secondName: req.user.secondName,
+                username: req.user.username,
+                email: req.user.email,
+                createdAt: req.user.createdAt,
+                updatedAt: req.user.updatedAt
+            }
+        });
     } catch (err) {
         res.json({ 'status': 404, 'error': 'User not found' });
     }
@@ -55,11 +68,11 @@ authRoutes.post('/users/:email/verify', authenticateJWT, async function (req, re
             res.json({
                 'status': 200,
                 'data': {
-                    id: req.updatedUser._id,
-                    email: req.updatedUser.email,
-                    firstName: req.updatedUser.firstName,
-                    secondName: req.updatedUser.secondName,
-                    status: req.updatedUser.status
+                    'id': req.updatedUser._id,
+                    'email': req.updatedUser.email,
+                    'firstName': req.updatedUser.firstName,
+                    'secondName': req.updatedUser.secondName,
+                    'status': req.updatedUser.status
                 }
             });
         });
@@ -120,7 +133,7 @@ authRoutes.post('/signup', async (req, res) => {
                 res.json({ 'error': 'There was a problem' });
             } else {
                 console.log(info)
-                res.json({ 'data': 'Mail sent' + info });
+                res.json({ 'data': 'Mail sent'});
             }
         });
 
@@ -145,7 +158,7 @@ authRoutes.post('/signin', async (req, res) => {
         const user = await User.findOne({ email }).populate('loan', 'status');
         if (user && user.comparePasswords(password)) {
             if (user.status !== 'Verified') {
-                return res.json({ 'status': 403, 'error': 'Account not verified, check your mail' });
+                res.json({ 'status': 403, 'error': 'Account not verified, check your mail' });
             }
             const accessToken = generateAccessToken(user);
             req.user = user;
