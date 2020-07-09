@@ -44,7 +44,6 @@ export function loadUser(user) {
         return userApi.loadUser(user)
             .then(user => {
                 if (user.data) {
-                    console.log(user.data)
                     return dispatch(loadUserSuccess(user))
                 }
                 return dispatch(receiveErrors(user))
