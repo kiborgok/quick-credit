@@ -12,7 +12,8 @@ export const loadUser = ({ userId, token }) =>
            method: "GET",
              headers: {
             'Authorization': 'Bearer '+token,
-             'Accept': 'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
            },
          })
         .then(response => response.json())
