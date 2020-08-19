@@ -13,8 +13,7 @@ export const authenticateJWT = (req, res, next) => {
     const token = authHeader.split(' ')[1];
     jwt.verify(
       token,
-      process.env.TOKEN_SECRET ||
-      "hvhfv_7bhg8fvhvy-jkh28hk n_BGYGB!(^@%(ikhi_l",
+      process.env.TOKEN_SECRET,
       (err, user) => {
         if (err) {
           return res.json({
@@ -43,8 +42,7 @@ export const generateAccessToken = (user) => {
       admin: user.admin,
       status: user.status,
     },
-    process.env.TOKEN_SECRET ||
-    "hvhfv_7bhg8fvhvy-jkh28hk n_BGYGB!(^@%(ikhi_l",
+    process.env.TOKEN_SECRET,
     { expiresIn: "24h" }
   );
 };

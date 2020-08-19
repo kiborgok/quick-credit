@@ -5,18 +5,16 @@ export const loadUsers = ({ token }) =>
              Authorization: `Bearer ${token}`,
              "Content-Type": "application/json",
            },
-         }).then((response) => response.json());
+         })
 
 export const loadUser = ({ userId, token }) =>
          fetch(`api/v1/auth/users/${userId}`, {
            method: "GET",
              headers: {
             'Authorization': 'Bearer '+token,
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
            },
          })
-        .then(response => response.json())
 
 export const verifyUser = ({ email, token }) => (
     fetch(`api/v1/auth/users/${email}/verify`, {
@@ -26,7 +24,6 @@ export const verifyUser = ({ email, token }) => (
             'Content-Type': 'application/json'
         }
     })
-        .then(response => response.json())
 );
 
 export const signup = (user) => (
@@ -37,7 +34,6 @@ export const signup = (user) => (
             'Content-Type': 'application/json'
         }
     })
-        .then(response => response.json())
 );
 
 export const signin = user => (
@@ -48,5 +44,4 @@ export const signin = user => (
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
 );

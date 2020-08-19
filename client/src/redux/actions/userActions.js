@@ -31,59 +31,69 @@ export const verifyUserSuccess = user => (
 
 export function loadUsers(users) {
     return function (dispatch) {
-        return userApi.loadUsers(users)
-            .then(users => {
-                if (users.data) return dispatch(loadUsersSuccess(users))
-                return dispatch(receiveErrors(users))
-            })
+        return userApi
+          .loadUsers(users)
+          .then((res) => res.json())
+          .then((users) => {
+            if (users.data) return dispatch(loadUsersSuccess(users));
+            return dispatch(receiveErrors(users));
+          });
     };
 };
 
 export function loadUser(user) {
     return function (dispatch) {
-        return userApi.loadUser(user)
-            .then(user => {
-                if (user.data) {
-                    return dispatch(loadUserSuccess(user))
-                }
-                return dispatch(receiveErrors(user))
-            })
+        return userApi
+          .loadUser(user)
+          .then((res) => res.json())
+          .then((user) => {
+            if (user.data) {
+              return dispatch(loadUserSuccess(user));
+            }
+            return dispatch(receiveErrors(user));
+          });
     };
 };
 
 export function verifyUser(user) {
     return function (dispatch) {
-        return userApi.verifyUser(user)
-            .then(user => {
-                if (user.data) {
-                    alert('You have successfully verified your account')
-                    localStorage.removeItem('verificationToken')
-                    localStorage.removeItem('email')
-                    return dispatch(verifyUserSuccess(user))
-                }
-                alert('There was a problem ' + user.error)
-                return dispatch(receiveErrors(user))
-            })
+        return userApi
+          .verifyUser(user)
+          .then((res) => res.json())
+          .then((user) => {
+            if (user.data) {
+              alert("You have successfully verified your account");
+              localStorage.removeItem("verificationToken");
+              localStorage.removeItem("email");
+              return dispatch(verifyUserSuccess(user));
+            }
+            alert("There was a problem " + user.error);
+            return dispatch(receiveErrors(user));
+          });
     };
 };
 
 export function signup(user) {
     return function (dispatch) {
-        return userApi.signup(user)
-            .then(user => {
-                if (user.data) {
-                    localStorage.setItem('verify', {
-                        token: user.data.verificationToken, email: user.data.email
-                    })
-                    alert('Check mail to verify your account')
-                    return dispatch(signInUserSuccess(user))
-                }
-                return dispatch(receiveErrors(user))
-            })
+        return userApi
+          .signup(user)
+          .then((res) => res.json())
+          .then((user) => {
+            if (user.data) {
+              localStorage.setItem("verify", {
+                token: user.data.verificationToken,
+                email: user.data.email,
+              });
+              alert("Check mail to verify your account");
+              return dispatch(signInUserSuccess(user));
+            }
+            return dispatch(receiveErrors(user));
+          });
     };
 };
 
 export const signin = user => dispatch => userApi.signin(user)
+    .then(res => res.json())
     .then(user => {
         if (user.data) {
             if (user.data) {
@@ -101,7 +111,7 @@ export const signin = user => dispatch => userApi.signin(user)
                 return dispatch(signInUserSuccess(user))
             }
         }
-        return dispatch(receiveErrors(user))
+        return dispatch(receiveErrors(user));
     })
     
 

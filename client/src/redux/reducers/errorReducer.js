@@ -17,7 +17,7 @@ const errorReducer = (state = initialState.errors, action) => {
         case types.LOAD_LOANS_SUCCESS:
         case types.LOAD_LOAN_SUCCESS:
         case types.APPROVE_OR_REJECT_LOAN:
-            return ''
+            return null
         default:
             return state;
     }

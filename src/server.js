@@ -10,9 +10,7 @@ dotenv.config();
 (async () => {
   try {
     await mongoose.connect(
-      process.env.MONGO_URI ||
-        "mongodb+srv://kiborgok:Matesya1@uplift-tdpp1.mongodb.net/quickcredit?retryWrites=true&w=majority",
-      //"mongodb://localhost:27017/uplift?readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+      process.env.MONGO_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -31,21 +29,13 @@ dotenv.config();
     app.use(bodyParser.json());
 
     // Serve static assets if in production
-    // if (process.env.NODE_ENV === "production") {
-    //   // Set static folder
-    //   app.use(express.static("quick-credit-client/build"));
-    //   app.get("*", (req, res) => {
-    //     res.sendFile(
-    //       path.join(__dirname, "/", "../quick-credit-client/build", "index.html")
-    //     );
-    //   });
-    // }
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === "development") {
       // Set static folder
-      app.use("/", express.static(path.join(__dirname, "../client/build")));
-
-      app.get("/*", (req, res) => {
-        res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+      app.use(express.static("client/build"));
+      app.get("*", (req, res) => {
+        res.sendFile(
+          path.join(__dirname, "/", "./client/build", "index.html")
+        );
       });
     }
 
