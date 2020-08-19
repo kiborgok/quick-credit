@@ -96,13 +96,13 @@ authRoutes.post('/signup', async (req, res) => {
             port: process.env.EMAIL_PORT || 465,
             secure: true,
             auth: {
-                user: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
-                pass: process.env.EMAIL_SENDER_PASS || "Matesya1@#$",
+                user: process.env.EMAIL_SENDER,
+                pass: process.env.EMAIL_SENDER_PASS,
             },
         });
 
         const message = {
-            from: process.env.EMAIL_SENDER || "alexvanellope@gmail.com",
+            from: process.env.EMAIL_SENDER,
             to: email,
             subject: "Quick Credit",
             html: ` <div>
